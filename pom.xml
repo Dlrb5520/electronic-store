@@ -13,8 +13,9 @@
         <module>mi-common</module>
         <module>mi-register</module>
         <module>mi-geteway</module>
-        <module>mi-order-consumer</module>
+        <module>mi-api</module>
         <module>mi-message</module>
+        <module>mi-server</module>
     </modules>
 
     <properties>

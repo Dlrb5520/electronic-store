@@ -1,0 +1,9 @@
+server:
+  port: 8003
+
+eureka:
+  instance:
+    hostname: mi-orders-api
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka/
