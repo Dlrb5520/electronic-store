@@ -1,0 +1,5 @@
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

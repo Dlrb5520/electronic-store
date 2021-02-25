@@ -4,3 +4,30 @@ spring:
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: mi-order-api
+          uri: lb://mi-order-api
+          predicates:
+            - Path=/apiOrder/**
+          filters:
+            - name: Hystrix
+              args:
+                name: apiOrderFallback
+                fallbackUri: forward:/fallback/mi-order-api
+
+# 开启feign使用hystrix熔断，默认为false
+feign:
+  hystrix:
+    enabled: true
+
+# hystrix 信号量隔离，3秒后自动超时
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 6000
+  shareSecurityContext: true

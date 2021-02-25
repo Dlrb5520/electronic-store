@@ -1,5 +1,5 @@
 spring:
   application:
-    name: mi-orders-server
+    name: mi-order-server
   profiles:
     active: dev

@@ -3,7 +3,9 @@ server:
 
 eureka:
   instance:
-    hostname: mi-orders-server
+    hostname: mi-order-server
+    instance-id: mi-order-server
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://127.0.0.1:8001/eureka/

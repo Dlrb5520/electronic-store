@@ -4,8 +4,7 @@ server:
 eureka:
   instance:
     hostname: mi-geteway
+    instance-id: mi-geteway
   client:
     service-url:
-      register-with-eureka: true
-      fetch-registry: true
       defaultZone: http://127.0.0.1:8001/eureka/
