@@ -17,7 +17,7 @@ public class OrderApiController {
 
     @GetMapping("/getOrderList")
     public ResponseBean getOrderList() throws InterruptedException {
-        Thread.sleep(5000);
+        // Thread.sleep(5000);
         return this.ordersapiopenfeign.getOrdersList();
     }
 }

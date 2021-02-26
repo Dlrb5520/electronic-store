@@ -1,4 +1,9 @@
 spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
   cloud:
     gateway:
       discovery:
@@ -15,6 +20,16 @@ spring:
               args:
                 name: apiOrderFallback
                 fallbackUri: forward:/fallback/mi-order-api
+            - name: RequestRateLimiter
+              args:
+                # 令牌桶每秒填充平均速率, 允许用户每秒处理多少个请求。
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶的容量，允许在1s内完成的最大请求数。
+                redis-rate-limiter.burstCapacity: 2
+                # 使用SpEL表达式从Spring容器中获取Bean对象, 查看RateLimiteConfig实现类中的方法名
+                key-resolver: "#{@pathKeyResolver}"
+                #key-resolver: "#{@ipKeyResolver}"
+                #key-resolver: "#{@userKeyResolver}"
 
 # 开启feign使用hystrix熔断，默认为false
 feign:
@@ -29,5 +44,5 @@ hystrix:
         isolation:
           strategy: SEMAPHORE
           thread:
-            timeoutInMilliseconds: 6000
+            timeoutInMilliseconds: 10000
   shareSecurityContext: true
