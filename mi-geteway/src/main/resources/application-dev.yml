@@ -1,6 +1,6 @@
 spring:
   redis:
-    database: 0
+    database: 1
     host: 127.0.0.1
     port: 6379
     password:
@@ -23,9 +23,9 @@ spring:
             - name: RequestRateLimiter
               args:
                 # 令牌桶每秒填充平均速率, 允许用户每秒处理多少个请求。
-                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.replenishRate: 20
                 # 令牌桶的容量，允许在1s内完成的最大请求数。
-                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.burstCapacity: 100
                 # 使用SpEL表达式从Spring容器中获取Bean对象, 查看RateLimiteConfig实现类中的方法名
                 key-resolver: "#{@pathKeyResolver}"
                 #key-resolver: "#{@ipKeyResolver}"

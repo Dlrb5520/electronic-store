@@ -3,3 +3,30 @@ ribbon:
     enabled: true
   ReadTimeout: 5000
   ConnectTimeout: 5000
+
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 20000
+
+hystrix:
+  shareSecurityContext: true
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillseconds: 10000
+  circuitBreaker:
+    #在当20秒的时间内，最近50次调用请求，请求错误率超过60%，则触发熔断10秒，期间快速失败。
+    requestVolumeThreshold: 10
+    errorThresholdPercentage: 60
+    sleepWindowInMilliseconds: 10000
+    metrics:
+      rollingStats:
+        timeInMilliseconds: 20000
+

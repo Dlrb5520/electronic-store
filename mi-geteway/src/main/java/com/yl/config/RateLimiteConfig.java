@@ -28,7 +28,6 @@ public class RateLimiteConfig {
     @Bean
     @Primary
     public KeyResolver pathKeyResolver() {
-        System.out.println("请求:==============");
         //写法1
         return exchange -> Mono.just(
                 exchange.getRequest()

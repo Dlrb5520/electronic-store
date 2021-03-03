@@ -16,7 +16,13 @@ public class OrderController {
     private IOrderService iorderservice;
 
     @GetMapping("/getOrderList")
-    public ResponseBean getOrderList() {
+    public ResponseBean getOrderList() throws InterruptedException {
+        Thread.sleep(5000);
         return new ResponseBean(200,"查询成功",this.iorderservice.getOrderList());
+    }
+
+    @GetMapping("/getOrderListById")
+    public ResponseBean getOrderListById() {
+        return  new ResponseBean(200,"查询成功byId",this.iorderservice.getOrderList());
     }
 }
