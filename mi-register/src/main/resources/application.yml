@@ -1,5 +1,21 @@
+server:
+  port: 8001
+
+eureka:
+  instance:
+    hostname: 127.0.0.1  # eureka实例的主机名
+  client:
+    register-with-eureka: false  #自己不注册
+    fetch-registry: false  #不从eureka上来获取服务的注册信息
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka/ #服务的注册地址
+
 spring:
   application:
     name: mi-register
   profiles:
     active: dev
+#  security:
+#    user:
+#      name: yangli
+#      password: woshi110
